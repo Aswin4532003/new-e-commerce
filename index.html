@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3D Shop Front</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      perspective: 1200px;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(120deg, #f0f4f8, #e3eaf0);
+      overflow-x: hidden;
+    }
+    .card3d {
+      transform-style: preserve-3d;
+      transition: transform 0.6s ease-in-out;
+    }
+    .card3d:hover {
+      transform: rotateY(15deg) scale(1.03);
+    }
+    .slideshow-container {
+      animation: rotateSlider 20s linear infinite;
+    }
+    @keyframes rotateSlider {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+    .image-live {
+      animation:floatImage 3s ease-in-out infinite;
+    }
+    @keyframes floatImage {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body class="text-gray-800">
+
+  <!-- Header -->
+<header class="text-center py-12 shadow-md relative overflow-hidden" style="perspective: 900px; background-image: url('gr.png'); background-size: cover; background-position: center;">
+  <!-- 3D Background Image -->
+  <div class="absolute inset-0 z-0">
+    <img src="gr.png" 
+         alt="3D Shopping Background" 
+         class="w-full h-full object-cover transform scale-110 rotateX-6 opacity-60 animate-pulse" 
+         style="transform: rotateX(8deg) translateZ(-30px);">
+  </div>
+
+  <!-- Content -->
+  <div class="relative z-10">
+    <h1 class="text-4xl font-bold text-white drop-shadow-lg">Welcome to shopesphere</h1>
+    <p class="text-lg mt-2 text-white drop-shadow">Where Shopping Meets Creativity</p>
+    <button onclick="window.location.href='frant.html'" class="mt-6 px-6 py-3 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition transform hover:scale-105">Shop Now</button>
+  </div>
+</header>
+
+
+  <!-- Live 3D Image -->
+  <section class="flex justify-center items-center my-12">
+    <img src="tv.png" alt="Live Product" class="rounded-xl shadow-lg image-live">
+  </section>
+
+  <!-- 3D Slideshow Section -->
+  <section id="shop" class="overflow-hidden px-4 pb-12">
+    <h2 class="text-3xl font-semibold text-center mb-8">Explore Our  Product Showcase</h2>
+    <div class="flex gap-8 slideshow-container w-[200%]">
+
+      <div class="flex flex-wrap justify-center gap-6 animate-pulse">
+  <!-- Product Cards 1 to 10 -->
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="Noise Cancelling Headphones.png" alt="Headphones" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Wireless Headphones</h3>
+    <p class="text-sm mt-2">Crystal clear sound with 48h battery</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="smart watch.jpg" alt="Smartwatch" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Smartwatch Pro</h3>
+    <p class="text-sm mt-2">Stay connected in style</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="gameing laptop.png" alt="Laptop" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">UltraThin Laptop</h3>
+    <p class="text-sm mt-2">Speed and power for every task</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="dslr.png" alt="Camera" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">DSLR Camera</h3>
+    <p class="text-sm mt-2">Capture every moment</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="ranning shope.png" alt="Shoes" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Running Shoes</h3>
+    <p class="text-sm mt-2">Comfort meets performance</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="Wireless Earbuds.png" alt="Earbuds" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Wireless Earbuds</h3>
+    <p class="text-sm mt-2">Compact and powerful sound</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="HD Tablet.png" alt="Tablet" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">HD Tablet</h3>
+    <p class="text-sm mt-2">Perfect for work and play</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="Bluetooth Speaker.png" alt="Speaker" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Bluetooth Speaker</h3>
+    <p class="text-sm mt-2">Powerful bass, portable design</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+
+  <div class="card3d w-64 bg-white rounded-xl shadow-xl p-4 transition duration-500">
+    <img src="Gaming Mouse.png" alt="Mouse" class="rounded-lg mb-4" />
+    <h3 class="text-xl font-semibold">Gaming Mouse</h3>
+    <p class="text-sm mt-2">Precision and speed combined</p>
+    <button class="mt-4 bg-indigo-500 text-white px-4 py-2 rounded hover:bg-indigo-600">Buy Now</button>
+  </div>
+</div>
+
+    </div>
+  </section>
+
+  <script>
+    function scrollToShop() {
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+</body>
+</html>
