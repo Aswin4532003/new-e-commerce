@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopSphere - Your Online Shopping Destination</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9fafb;
+            color: #374151;
+        }
+        .auth-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .payment-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .cart-item:hover {
+            background-color: #f3f4f6;
+        }
+        input[type="number"]::-webkit-inner-spin-button,
+        input[type="number"]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body >
+    <!-- Top Navigation -->
+    <nav class="bg-white shadow-md py-4 px-6 sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fas fa-shopping-bag text-3xl text-indigo-600"></i>
+                <h1 class="text-xl font-bold text-gray-800">ShopSphere</h1>
+            </div>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+                <a href="#products" class="text-gray-700 hover:text-indigo-600 transition">Products</a>
+                <a href="#categories" class="text-gray-700 hover:text-indigo-600 transition">Categories</a>      
+                <a onclick="window.location.href='contact.html'" class="text-gray-700 hover:text-indigo-600 transition cursor-pointer">Contact</a>
+
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="cart-btn" class="relative">
+                    <i class="fas fa-shopping-cart text-xl text-gray-700 hover:text-indigo-600"></i>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-indigo-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">0</span>
+                </button>
+                <button id="auth-btn" class="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg transition">
+                    Sign In
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+         <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 space-y-2">
+            <a href="#home" class="block py-2 px-4 hover:bg-gray-100 rounded transition">Home</a>
+            <a href="#products" class="block py-2 px-4 hover:bg-gray-100 rounded transition">Products</a>
+            <a href="#categories" class="block py-2 px-4 hover:bg-gray-100 rounded transition">Categories</a>
+            <a href="#contact" class="block py-2 px-4 hover:bg-gray-100 rounded transition">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-20">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Shop the Latest Trends</h1>
+                <p class="text-lg mb-8">Discover amazing products at unbeatable prices with fast delivery to your doorstep.</p>
+                
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="intro.png" alt="Online shopping experience with various products on display" class="rounded-lg shadow-xl">
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">Shop by Categories</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+              
+ <div class="category-card bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="bg-green-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-home text-3xl text-green-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Home</h3>
+                    <p class="text-sm text-gray-500">Decor & more</p>
+                </div>
+                <div class="category-card bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition cursor-pointer" onclick="window.location.href='Fashion.html'">
+                    <div class="bg-indigo-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-tshirt text-3xl text-indigo-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Fashion</h3>
+                    <p class="text-sm text-gray-500">Latest trends</p>
+                </div>
+              
+                <div class="category-card bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition cursor-pointer" onclick="window.location.href='electronic.html'">
+                    <div class="bg-purple-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-laptop text-3xl text-purple-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Electronics</h3>
+                    <p class="text-sm text-gray-500">Smart devices</p>
+                </div>
+                
+                <div class="category-card bg-gray-50 rounded-lg p-4 text-center hover:shadow-md transition cursor-pointer" onclick="window.location.href='fitness.html'">
+                    <div class="bg-red-100 w-20 h-20 mx-auto rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-dumbbell text-3xl text-red-600"></i>
+                    </div>
+                    <h3 class="font-semibold mb-2">Fitness</h3>
+                    <p class="text-sm text-gray-500">Health gear</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-16 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-center mb-10">
+                <h2 class="text-3xl font-bold">Featured Products</h2>
+                <a href="#" class="text-indigo-600 hover:underline">View All</a>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Product 1 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="wireless headphone.png" alt="Premium wireless headphones with noise cancellation technology" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-indigo-600 text-white px-2 py-1 rounded-full text-xs">New</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Wireless Headphones</h3>
+                        <p class="text-gray-500 text-sm mb-3">Premium sound quality</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-600">$129.99</span>
+                            <button class="add-to-cart" data-id="1" data-name="Wireless Headphones Pro" data-price="129.99" data-image="https://placehold.co/400x300">
+                                <i class="fas fa-plus-circle text-2xl text-indigo-600 hover:text-indigo-800 transition"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <div class="relative">
+                        <img src="smart watch.jpg" alt="Modern smartwatch with fitness and health tracking features" class="w-full h-64 object-cover">
+                        <div class="absolute top-2 right-2 bg-red-500 text-white px-2 py-1 rounded-full text-xs">Sale</div>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Smart Watch</h3>
+                        <p class="text-gray-500 text-sm mb-3">Health tracking</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-indigo-600">$149.99</span>
+                                <span class="text-gray-400 text-sm line-through ml-2">$199.99</span>
+                            </div>
+                            <button class="add-to-cart" data-id="2" data-name="Smart Watch" data-price="149.99" data-image="https://placehold.co/400x300">
+                                <i class="fas fa-plus-circle text-2xl text-indigo-600 hover:text-indigo-800 transition"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <img src="dslr.png" alt="Professional DSLR camera with high-quality lens" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">DSLR Camera</h3>
+                        <p class="text-gray-500 text-sm mb-3">Professional quality</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-600">$599.99</span>
+                            <button class="add-to-cart" data-id="3" data-name="DSLR Camera" data-price="599.99" data-image="https://placehold.co/400x300">
+                                <i class="fas fa-plus-circle text-2xl text-indigo-600 hover:text-indigo-800 transition"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card bg-white rounded-lg shadow-md overflow-hidden transition duration-300">
+                    <img src="bage.png" alt="Stylish leather backpack for everyday use" class="w-full h-64 object-cover">
+                    <div class="p-4">
+                        <h3 class="font-semibold text-lg mb-1">Leather Backpack</h3>
+                        <p class="text-gray-500 text-sm mb-3">Durable & stylish</p>
+                        <div class="flex justify-between items-center">
+                            <span class="font-bold text-indigo-600">$79.99</span>
+                            <button class="add-to-cart" data-id="4" data-name="Leather Backpack" data-price="79.99" data-image="https://placehold.co/400x300">
+                                <i class="fas fa-plus-circle text-2xl text-indigo-600 hover:text-indigo-800 transition"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="py-16 bg-indigo-600 text-white">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-3xl font-bold mb-6">Download Our Mobile App</h2>
+                <p class="text-lg mb-6">Shop on the go with our Android app featuring exclusive mobile-only deals!</p>
+                <div class="flex space-x-4">
+                    <button class="bg-white text-indigo-600 px-6 py-3 rounded-lg font-semibold flex items-center">
+                        <i class="fab fa-google-play text-2xl mr-2"></i>
+                        <div class="text-left">
+                            <div class="text-xs">GET IT ON</div>
+                            <div class="text-lg">Google Play</div>
+                        </div>
+                    </button>
+                    <button class="border-2 border-white px-6 py-3 rounded-lg font-semibold flex items-center">
+                        <i class="fab fa-apple text-2xl mr-2"></i>
+                        <div class="text-left">
+                            <div class="text-xs">Coming soon on</div>
+                            <div class="text-lg">App Store</div>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <img src="showing e-commerce.png" alt="Smartphone showing our e-commerce mobile application" class="h-96">
+            </div>
+        </div>
+    </section>
+
+    <!-- Customer Reviews -->
+    <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Customers Say</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-indigo-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"The shopping experience is seamless and the delivery was incredibly fast. Highly recommend!"</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-purple-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Michael Chen</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"Great selection of products and excellent customer service. The mobile app is very user-friendly."</p>
+                </div>
+                <div class="bg-gray-50 p-6 rounded-lg shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-green-100 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user text-xl text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Emma Rodriguez</h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600">"I love the curated collections and personalized recommendations. Makes shopping so much easier!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Stay Updated</h2>
+            <p class="text-gray-600 mb-8">Subscribe to our newsletter for exclusive deals and updates</p>
+            <div class="flex flex-col sm:flex-row justify-center gap-2">
+                <input type="email" placeholder="Your email address" class="px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 flex-grow sm:max-w-md">
+                <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-semibold transition">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <i class="fas fa-shopping-bag text-2xl text-indigo-400"></i>
+                    <h3 class="text-xl font-bold">ShopSphere</h3>
+                </div>
+                <p class="text-gray-400 mb-4">Your one-stop destination for seamless online shopping across web and mobile platforms.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Shop</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">All Products</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Featured Items</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">New Arrivals</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Sale</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Track Order</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Returns</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h4 class="font-semibold text-lg mb-4">Company</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">About Us</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Careers</a></li>
+                    <li><a href="#" class="text-gray-400 hover:text-white transition">Terms & Privacy</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto px-6 mt-10 pt-6 border-t border-gray-800">
+            <p class="text-gray-400 text-center">&copy; 2023 ShopSphere. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Authentication Popup -->
+    <div id="auth-popup" class="auth-popup">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md relative">
+            <button id="close-auth-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-8">
+                <ul class="flex border-b mb-8" id="auth-tabs">
+                    <li class="auth-tab active" data-tab="login"><button class="py-2 px-4 font-medium focus:outline-none">Login</button></li>
+                    <li class="auth-tab ml-4" data-tab="register"><button class="py-2 px-4 font-medium focus:outline-none">Register</button></li>
+                </ul>
+                
+                <!-- Login Form -->
+                <div id="login-tab" class="auth-content active">
+                    <h3 class="text-2xl font-bold mb-6">Welcome Back</h3>
+                    <form id="login-form">
+                        <div class="mb-4">
+                            <label for="login-email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="login-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="login-password" class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" id="login-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold transition">
+                            Sign In
+                        </button>
+                        <div class="text-center mt-4">
+                            <a href="#" class="text-indigo-600 hover:underline text-sm">Forgot password?</a>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Registration Form -->
+                <div id="register-tab" class="auth-content hidden">
+                    <h3 class="text-2xl font-bold mb-6">Create Account</h3>
+                    <form id="register-form">
+                        <div class="mb-4">
+                            <label for="register-name" class="block text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="register-name" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-email" class="block text-gray-700 mb-2">Email Address</label>
+                            <input type="email" id="register-email" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="mb-4">
+                            <label for="register-password" class="block text-gray-700 mb-2">Password</label>
+                            <input type="password" id="register-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <div class="mb-6">
+                            <label for="register-confirm-password" class="block text-gray-700 mb-2">Confirm Password</label>
+                            <input type="password" id="register-confirm-password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold transition">
+                            Sign Up
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 w-full sm:w-96 h-full bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300 ease-in-out">
+        <div class="h-full flex flex-col">
+            <div class="border-b p-4 flex justify-between items-center">
+                <h3 class="text-xl font-bold">Your Cart</h3>
+                <button id="close-cart" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div id="cart-items" class="flex-grow overflow-y-auto p-4">
+                <!-- Cart items will be inserted here -->
+                <div class="text-center py-10 text-gray-500" id="empty-cart-message">
+                    <i class="fas fa-shopping-cart text-4xl mb-4 text-gray-300"></i>
+                    <p>Your cart is empty</p>
+                    <p class="text-sm mt-2">Browse our products and add something special!</p>
+                </div>
+            </div>
+            
+            <div class="border-t p-4">
+                <div class="flex justify-between mb-2">
+                    <span class="text-gray-600">Subtotal:</span>
+                    <span id="cart-subtotal" class="font-semibold">$0.00</span>
+                </div>
+                <div class="flex justify-between mb-4">
+                    <span class="text-gray-600">Shipping:</span>
+                    <span id="cart-shipping" class="font-semibold">Free</span>
+                </div>
+                <div class="flex justify-between mb-6 text-lg">
+                    <span>Total:</span>
+                    <span id="cart-total" class="font-bold">$0.00</span>
+                </div>
+                <button id="checkout-btn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-3 px-4 rounded-lg font-semibold transition disabled:opacity-50" disabled>
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Payment Popup -->
+    <div id="payment-popup" class="payment-popup">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-lg relative">
+            <button id="close-payment-popup" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            
+            <div class="p-6">
+                <h3 class="text-2xl font-bold mb-6">Complete Your Purchase</h3>
+                
+                <div class="bg-gray-50 p-4 rounded-lg mb-6">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Subtotal:</span>
+                        <span id="payment-subtotal" class="font-semibold">$0.00</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Shipping:</span>
+                        <span id="payment-shipping" class="font-semibold">Free</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold">
+                        <span>Total:</span>
+                        <span id="payment-total" class="text-indigo-600">$0.00</span>
+                    </div>
+                </div>
+                
+                <form id="payment-form">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 mb-3 font-semibold">Payment Method</label>
+                        <div class="flex space-x-4 mb-3">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="payment-method" value="credit-card" checked class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span>Credit Card</span>
+                            </label>
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="radio" name="payment-method" value="paypal" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500">
+                                <span>PayPal</span>
+                            </label>
+                        </div>
+                        
+                        <div id="credit-card-fields">
+                            <div class="mb-4">
+                                <label for="card-number" class="block text-gray-700 mb-2">Card Number</label>
+                                <input type="text" id="card-number" placeholder="1234 5678 9012 3456" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                            <div class="grid grid-cols-2 gap-4 mb-4">
+                                <div>
+                                    <label for="card-expiry" class="block text-gray-700 mb-2">Expiry Date</label>
+                                    <input type="text" id="card-expiry" placeholder="MM/YY" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label for="card-cvv" class="block text-gray-700 mb-2">CVV</label>
+                                    <input type="text" id="card-cvv" placeholder="123" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <label for="card-name" class="block text-gray-700 mb-2">Name on Card</label>
+                                <input type="text" id="card-name" placeholder="John Smith" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                            </div>
+                        </div>
+                        
+                        <div id="paypal-fields" class="hidden">
+                            <p class="text-gray-600 mb-4">You will be redirected to PayPal to complete your payment.</p>
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/893d4271-3245-4221-87f1-978e03795c40.png" alt="Secure PayPal payment gateway option" class="h-12 object-contain">
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-start mb-6">
+                        <input type="checkbox" id="terms-agreement" class="h-4 w-4 mt-1 text-indigo-600 focus:ring-indigo-500">
+                        <label for="terms-agreement" class="ml-2 block text-gray-700">
+                            I agree to the <a href="#" class="text-indigo-600 hover:underline">Terms & Conditions</a> and <a href="#" class="text-indigo-600 hover:underline">Privacy Policy</a>
+                        </label>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold transition">
+                        Complete Purchase
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+     
+       // Mobile menu toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Authentication popup toggle
+        const authBtn = document.getElementById('auth-btn');
+        const authPopup = document.getElementById('auth-popup');
+        const closeAuthPopup = document.getElementById('close-auth-popup');
+
+        authBtn.addEventListener('click', function() {
+            authPopup.style.display = 'flex';
+        });
+
+        closeAuthPopup.addEventListener('click', function() {
+            authPopup.style.display = 'none';
+        });
+
+        // Tab switching in auth popup
+        const authTabs = document.querySelectorAll('.auth-tab');
+        const authContents = document.querySelectorAll('.auth-content');
+
+        authTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabName = this.getAttribute('data-tab');
+                
+                // Update active tab
+                authTabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Show corresponding content
+                authContents.forEach(content => {
+                    content.classList.add('hidden');
+                    if (content.id === `${tabName}-tab`) {
+                        content.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('login-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('token', data.token);
+                    authPopup.style.display = 'none';
+                    alert('Login successful!');
+                } else {
+                    alert('Login failed. Please check your credentials.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during login.');
+            }
+        });
+
+        document.getElementById('register-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, password })
+                });
+                
+                if (response.ok) {
+                    alert('Registration successful! Please login.');
+                    document.querySelector('.auth-tab[data-tab="login"]').click();
+                } else {
+                    alert('Registration failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during registration.');
+            }
+        });
+
+        // Cart functionality
+        const cartBtn = document.getElementById('cart-btn');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const closeCart = document.getElementById('close-cart');
+        const cartItemsContainer = document.getElementById('cart-items');
+        const emptyCartMessage = document.getElementById('empty-cart-message');
+        const cartSubtotal = document.getElementById('cart-subtotal');
+        const cartTotal = document.getElementById('cart-total');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        
+        // Add to cart functionality
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                const id = this.getAttribute('data-id');
+                const name = this.getAttribute('data-name');
+                const price = parseFloat(this.getAttribute('data-price'));
+                const image = this.getAttribute('data-image');
+                
+                // Check if item already in cart
+                const existingItem = cart.find(item => item.id === id);
+                
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({
+                        id,
+                        name,
+                        price,
+                        image,
+                        quantity: 1
+                    });
+                }
+                
+                updateCart();
+                localStorage.setItem('cart', JSON.stringify(cart));
+                
+                // Show cart briefly when adding items
+                cartSidebar.classList.remove('translate-x-full');
+                setTimeout(() => {
+                    if (!cartSidebar.classList.contains('translate-x-full')) {
+                        cartSidebar.classList.add('translate-x-full');
+                    }
+                }, 2000);
+            });
+        });
+        
+        // Toggle cart sidebar
+        cartBtn.addEventListener('click', function() {
+            cartSidebar.classList.toggle('translate-x-full');
+        });
+        
+        closeCart.addEventListener('click', function() {
+            cartSidebar.classList.add('translate-x-full');
+        });
+        
+        // Update cart display
+        function updateCart() {
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            document.getElementById('cart-count').textContent = totalItems;
+            
+            // Update cart items list
+            cartItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItemsContainer.appendChild(emptyCartMessage.cloneNode(true));
+                checkoutBtn.disabled = true;
+            } else {
+                emptyCartMessage.remove();
+                checkoutBtn.disabled = false;
+                
+                cart.forEach(item => {
+                    const cartItemElement = document.createElement('div');
+                    cartItemElement.className = 'cart-item flex py-4 border-b last:border-0 transition';
+                    cartItemElement.innerHTML = `
+                        <div class="flex-shrink-0 w-20 h-20 bg-gray-100 rounded-lg overflow-hidden mr-4">
+                            <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow">
+                            <h4 class="font-medium">${item.name}</h4>
+                            <p class="text-gray-500">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="flex flex-col items-end">
+                            <div class="flex items-center mb-2">
+                                <button class="update-quantity" data-id="${item.id}" data-action="decrease" class="text-gray-500 hover:text-indigo-600 px-2">
+                                    <i class="fas fa-minus text-sm"></i>
+                                </button>
+                                <span class="w-8 text-center">${item.quantity}</span>
+                                <button class="update-quantity" data-id="${item.id}" data-action="increase" class="text-gray-500 hover:text-indigo-600 px-2">
+                                    <i class="fas fa-plus text-sm"></i>
+                                </button>
+                            </div>
+                            <button class="remove-item text-red-500 hover:text-red-700 text-sm" data-id="${item.id}">
+                                <i class="fas fa-trash mr-1"></i> Remove
+                            </button>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+                
+                // Update totals
+                const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+                cartSubtotal.textContent = `$${subtotal.toFixed(2)}`;
+                cartTotal.textContent = `$${subtotal.toFixed(2)}`;
+            }
+            
+            // Add event listeners to quantity buttons
+            document.querySelectorAll('.update-quantity').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    const action = this.getAttribute('data-action');
+                    
+                    const item = cart.find(item => item.id === id);
+                    
+                    if (action === 'increase') {
+                        item.quantity += 1;
+                    } else if (action === 'decrease' && item.quantity > 1) {
+                        item.quantity -= 1;
+                    }
+                    
+                    updateCart();
+                });
+            });
+            
+            // Add event listeners to remove buttons
+            document.querySelectorAll('.remove-item').forEach(button => {
+                button.addEventListener('click', function() {
+                    const id = this.getAttribute('data-id');
+                    cart = cart.filter(item => item.id !== id);
+                    updateCart();
+                });
+            });
+        }
+        
+        // Payment popup toggle
+        const paymentPopup = document.getElementById('payment-popup');
+        const closePaymentPopup = document.getElementById('close-payment-popup');
+        
+        checkoutBtn.addEventListener('click', function() {
+            paymentPopup.style.display = 'flex';
+            
+            // Update payment summary
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.getElementById('payment-subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('payment-total').textContent = `$${subtotal.toFixed(2)}`;
+        });
+        
+        closePaymentPopup.addEventListener('click', function() {
+            paymentPopup.style.display = 'none';
+        });
+        
+        // Payment method toggle
+        document.querySelectorAll('input[name="payment-method"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const creditCardFields = document.getElementById('credit-card-fields');
+                const paypalFields = document.getElementById('paypal-fields');
+                
+                if (this.value === 'credit-card') {
+                    creditCardFields.classList.remove('hidden');
+                    paypalFields.classList.add('hidden');
+                } else {
+                    creditCardFields.classList.add('hidden');
+                    paypalFields.classList.remove('hidden');
+                }
+            });
+        });
+        
+        // Payment form submission
+        document.getElementById('payment-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const token = localStorage.getItem('token');
+            if (!token) {
+                alert('Please login to complete your purchase');
+                authPopup.style.display = 'flex';
+                return;
+            }
+
+            const paymentData = {
+                products: cart.map(item => ({
+                    id: item.id,
+                    quantity: item.quantity
+                })),
+                paymentMethod: document.querySelector('input[name="payment-method"]:checked').value,
+                // Include additional payment info if needed
+            };
+
+            try {
+                const response = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: JSON.stringify(paymentData)
+                });
+
+                if (response.ok) {
+                    alert('Order placed successfully!');
+                    paymentPopup.style.display = 'none';
+                    cart = [];
+                    updateCart();
+                    cartSidebar.classList.add('translate-x-full');
+                } else {
+                    alert('Payment failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during payment.');
+            }
+        });
+        
+        // Initialize cart and check auth state
+        updateCart();
+        
+        // Check if user is logged in
+        const token = localStorage.getItem('token');
+        if (token) {
+            document.getElementById('auth-btn').textContent = 'My Account';
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+I'm looking to develop an online shopping application that works on both mobile (Android first) and web platforms.
+
+Essential features include:
+- User authentication
+- Payment integration
+
+Ideal skills and experience:
+- Proven experience in developing cross-platform applications
+- Strong background in mobile app development, particularly on Android
+- Expertise in implementing secure user authentication and payment systems
+- Knowledge of UI/UX design principles for a seamless shopping experience
+
+t
